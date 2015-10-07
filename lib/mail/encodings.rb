@@ -256,15 +256,6 @@ module Mail
     def Encodings.collapse_adjacent_encodings(str)
       results = []
       previous_encoding = nil
-#<<<<<<< HEAD
-#
-#      lines.each do |line|
-#        encoding = split_value_encoding_from_string(line)
-#
-#        if encoding == previous_encoding
-#          line = results.pop + line
-#          line.gsub!(/\?\=\=\?.+?\?[QqBb]\?/m, '')
-#=======
       lines = str.split(FULL_ENCODED_VALUE)
       lines.each_slice(2) do |unencoded, encoded|
         if encoded
@@ -278,7 +269,6 @@ module Mail
           previous_encoding = encoding
         else
           results << unencoded
-#>>>>>>> 6e6e5ec... deal with complex encoding patters during collapsing
         end
       end
 
